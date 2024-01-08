@@ -1,19 +1,29 @@
-import { useState } from 'react'
+import { Dispatch } from 'react'
 
-const UseStateExample = () => {
-  const [counter, setCounter] = useState(0)
-  console.log('Render')
+type TCounter = {
+  counter: number
+  setCounter: Dispatch<React.SetStateAction<number>>
+}
+
+const UseStateExample = ({ counter, setCounter }: TCounter) => {
+  // console.log('Render')
+
+  // const handleIncrement = () => {
+  //   // setCounter((prevState) => prevState + 1)
+  //   setCounter((prevState) => prevState + 1)
+  //   // setCounter(counter + 1)
+  // }
+
+  // const handleAsyncIncrement = () => {
+  //   setTimeout(() => {
+  //     setCounter((prevState) => prevState + 1)
+  //   }, 2000)
+  // }
 
   return (
     <div>
       <h1>{counter}</h1>
-      <button onClick={() => setCounter((prevStatus) => prevStatus + 1)}>
-        Increment
-      </button>
-      <button onClick={() => setCounter((prevStatus) => prevStatus - 1)}>
-        Decrement
-      </button>
-      <button onClick={() => setCounter(0)}>Reset</button>
+      <button onClick={() => setCounter(counter + 1)}>Increment</button>
     </div>
   )
 }
