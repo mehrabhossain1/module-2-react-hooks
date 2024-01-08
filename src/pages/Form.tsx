@@ -11,20 +11,18 @@ const Form = () => {
     console.log(user)
   }
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(user)
+    const inputName = e.target.name
+    const value = e.target.value
+    setUser({ ...user, [inputName]: value })
+  }
+
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        onChange={(e) => setUser({ ...user, name: e.target.value })}
-        type='text'
-        name='name'
-        id='name'
-      />
-      <input
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-        type='text'
-        name='email'
-        id='email'
-      />
+      <input onChange={handleChange} type='text' name='name' id='name' />
+      <input onChange={handleChange} type='text' name='email' id='email' />
+      <input onChange={handleChange} type='text' name='pass' id='pass' />
       <button type='submit'>Submit</button>
     </form>
   )
