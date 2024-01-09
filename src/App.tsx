@@ -1,7 +1,8 @@
-// import { useState } from 'react'
 import './App.css'
+// import { useState } from 'react'
 // import UseStateExample from './pages/UseState'
-import Form from './pages/Form'
+// import Form from './pages/Form'
+import UseReducerExample from './pages/UseReducerExample'
 
 function App() {
   // const [counter, setCounter] = useState(0)
@@ -9,7 +10,8 @@ function App() {
   return (
     <>
       {/* <UseStateExample counter={counter} setCounter={setCounter} /> */}
-      <Form />
+      {/* <Form /> */}
+      <UseReducerExample />
     </>
   )
 }
