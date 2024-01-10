@@ -16,7 +16,7 @@ const UseEffectExample = () => {
       <button onClick={() => setHidden((prev) => !prev)}>
         {hidden ? 'Show' : 'Hide'}
       </button>
-      {!hidden && <Counter />}
+      {hidden && <Todo />}
     </div>
   )
 }
@@ -36,6 +36,18 @@ const Counter = () => {
   }, [])
 
   return <h1>{count}</h1>
+}
+
+const Todo = () => {
+  const controller = new AbortController()
+  const signal = controller.signal
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos/1', { signal })
+      .then((res) => res.json())
+      .then((data) => alert(data.title))
+  }, [])
+  return <div>Todo</div>
 }
 
 export default UseEffectExample
