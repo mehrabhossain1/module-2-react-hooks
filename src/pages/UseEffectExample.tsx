@@ -3,29 +3,39 @@ import { useEffect, useState } from 'react'
 const UseEffectExample = () => {
   const [hidden, setHidden] = useState(false)
 
-  const [count, setCount] = useState(0)
-
-  //   useEffect(() => {
-  //     console.log('Render')
-
-  //     return () => {
-  //       console.log('Inside cleanup')
-  //     }
-  //   }, [hidden])
-
   useEffect(() => {
-    setInterval(() => {
-      setCount((prev) => prev + 1)
-      console.log('setInterval')
-    }, 1000)
-  }, [])
+    console.log('Render')
+
+    return () => {
+      console.log('Inside cleanup')
+    }
+  }, [hidden])
 
   return (
     <div>
-      {/* <button onClick={() => setHidden((prev) => !prev)}>Click</button> */}
-      <h1>{count}</h1>
+      <button onClick={() => setHidden((prev) => !prev)}>
+        {hidden ? 'Show' : 'Hide'}
+      </button>
+      {!hidden && <Counter />}
     </div>
   )
+}
+
+const Counter = () => {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      // console.log('Render')
+      setCount((prev) => prev + 1)
+    }, 1000)
+
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [])
+
+  return <h1>{count}</h1>
 }
 
 export default UseEffectExample
